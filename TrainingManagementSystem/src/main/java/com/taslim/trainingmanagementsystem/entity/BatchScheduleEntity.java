@@ -1,14 +1,12 @@
 package com.taslim.trainingmanagementsystem.entity;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5b590c25ac9b4380c4b497dd99f2bb78c55f3cba
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
+import lombok.*;
+import java.time.*;
 import java.util.List;
 
 @Entity

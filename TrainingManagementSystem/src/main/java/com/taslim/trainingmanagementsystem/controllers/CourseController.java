@@ -6,7 +6,6 @@ import com.taslim.trainingmanagementsystem.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -26,7 +25,7 @@ public class CourseController {
         return courseService.getAllCourses();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Object> getCourseById(@PathVariable Long id) {
         return courseService.getCourseById(id);
     }

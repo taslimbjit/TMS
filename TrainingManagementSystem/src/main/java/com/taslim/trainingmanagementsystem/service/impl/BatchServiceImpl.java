@@ -8,9 +8,7 @@ import com.taslim.trainingmanagementsystem.service.BatchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +23,6 @@ public class BatchServiceImpl implements BatchService {
                 .startingDate(requestModel.getStartingDate())
                 .endingDate(requestModel.getEndingDate())
                 .build();
-
         BatchEntity savedBatch = batchRepository.save(batch);
         return ResponseEntity.ok(savedBatch);
     }
@@ -53,7 +50,6 @@ public class BatchServiceImpl implements BatchService {
             batch.setBatchName(requestModel.getBatchName());
             batch.setStartingDate(requestModel.getStartingDate());
             batch.setEndingDate(requestModel.getEndingDate());
-
             BatchEntity updatedBatch = batchRepository.save(batch);
             return ResponseEntity.ok(updatedBatch);
         } else {

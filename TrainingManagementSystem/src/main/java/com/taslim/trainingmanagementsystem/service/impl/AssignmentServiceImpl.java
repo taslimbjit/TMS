@@ -8,9 +8,7 @@ import com.taslim.trainingmanagementsystem.service.AssignmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +24,6 @@ public class AssignmentServiceImpl implements AssignmentService {
         Optional<BatchEntity> batchOptional = batchRepository.findById(assignmentRequestModel.getBatchId());
         Optional<TrainerEntity> trainerOptional = trainerRepository.findById(assignmentRequestModel.getTrainerId());
         Optional<CourseEntity> courseOptional = courseRepository.findById(assignmentRequestModel.getCourseId());
-
         if (batchOptional.isEmpty() || trainerOptional.isEmpty() || courseOptional.isEmpty()) {
             throw new BookNameAuthorNameAlreadyExistsExcepion("Invalid batch, trainer, or course ID.");
         }
@@ -34,7 +31,6 @@ public class AssignmentServiceImpl implements AssignmentService {
         BatchEntity batch = batchOptional.get();
         TrainerEntity trainer = trainerOptional.get();
         CourseEntity course = courseOptional.get();
-
         AssignmentEntity assignment = AssignmentEntity.builder()
                 .batch(batch)
                 .trainer(trainer)
@@ -45,7 +41,6 @@ public class AssignmentServiceImpl implements AssignmentService {
                 .submissionDateTime(assignmentRequestModel.getSubmissionDateTime())
                 .submittedFilePath(assignmentRequestModel.getSubmittedFilePath())
                 .build();
-
         AssignmentEntity savedAssignment = assignmentRepository.save(assignment);
         return ResponseEntity.ok(savedAssignment);
     }
@@ -76,7 +71,6 @@ public class AssignmentServiceImpl implements AssignmentService {
             if (batchOptional.isEmpty() || trainerOptional.isEmpty() || courseOptional.isEmpty()) {
                 throw new BookNameAuthorNameAlreadyExistsExcepion("Invalid batch, trainer, or course ID.");
             }
-
             AssignmentEntity assignment = assignmentOptional.get();
             assignment.setBatch(batchOptional.get());
             assignment.setTrainer(trainerOptional.get());
@@ -86,7 +80,6 @@ public class AssignmentServiceImpl implements AssignmentService {
             assignment.setSubmissionStatus(assignmentRequestModel.getSubmissionStatus());
             assignment.setSubmissionDateTime(assignmentRequestModel.getSubmissionDateTime());
             assignment.setSubmittedFilePath(assignmentRequestModel.getSubmittedFilePath());
-
             AssignmentEntity updatedAssignment = assignmentRepository.save(assignment);
             return ResponseEntity.ok(updatedAssignment);
         } else {

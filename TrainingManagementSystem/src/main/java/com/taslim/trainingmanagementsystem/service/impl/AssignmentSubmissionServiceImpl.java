@@ -8,9 +8,7 @@ import com.taslim.trainingmanagementsystem.service.AssignmentSubmissionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -24,19 +22,16 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
     public ResponseEntity<Object> createAssignmentSubmission(AssignmentSubmissionRequestModel submissionRequestModel) {
         Optional<AssignmentEntity> assignmentOptional = assignmentRepository.findById(submissionRequestModel.getAssignmentId());
         Optional<TraineeEntity> traineeOptional = traineeRepository.findById(submissionRequestModel.getTraineeId());
-
         if (assignmentOptional.isEmpty() || traineeOptional.isEmpty()) {
             throw new BookNameAuthorNameAlreadyExistsExcepion("Invalid assignment or trainee ID.");
         }
 
         AssignmentEntity assignment = assignmentOptional.get();
         TraineeEntity trainee = traineeOptional.get();
-
         AssignmentSubmissionEntity submission = AssignmentSubmissionEntity.builder()
                 .assignment(assignment)
                 .trainee(trainee)
                 .build();
-
         AssignmentSubmissionEntity savedSubmission = assignmentSubmissionRepository.save(submission);
         return ResponseEntity.ok(savedSubmission);
     }
@@ -62,15 +57,12 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
         if (submissionOptional.isPresent()) {
             Optional<AssignmentEntity> assignmentOptional = assignmentRepository.findById(submissionRequestModel.getAssignmentId());
             Optional<TraineeEntity> traineeOptional = traineeRepository.findById(submissionRequestModel.getTraineeId());
-
             if (assignmentOptional.isEmpty() || traineeOptional.isEmpty()) {
                 throw new BookNameAuthorNameAlreadyExistsExcepion("Invalid assignment or trainee ID.");
             }
-
             AssignmentSubmissionEntity submission = submissionOptional.get();
             submission.setAssignment(assignmentOptional.get());
             submission.setTrainee(traineeOptional.get());
-
             AssignmentSubmissionEntity updatedSubmission = assignmentSubmissionRepository.save(submission);
             return ResponseEntity.ok(updatedSubmission);
         } else {

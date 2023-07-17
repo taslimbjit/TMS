@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -18,6 +17,7 @@ public class UserController {
     public ResponseEntity<Object> register(@RequestBody UserRequestModel requestModel){
         return userService.register(requestModel);
     }
+
     @PostMapping("/login")
     public AuthenticationResponse login(@RequestBody AuthenticationRequest authenticationRequest){
         return userService.login(authenticationRequest);

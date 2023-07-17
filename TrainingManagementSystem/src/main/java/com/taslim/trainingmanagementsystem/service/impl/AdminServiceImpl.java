@@ -1,17 +1,19 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
 import com.taslim.trainingmanagementsystem.entity.AdminEntity;
+<<<<<<< HEAD
 import com.taslim.trainingmanagementsystem.exception.AdminNotFoundException;
 import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
+=======
+import com.taslim.trainingmanagementsystem.exception.*;
+>>>>>>> 5b590c25ac9b4380c4b497dd99f2bb78c55f3cba
 import com.taslim.trainingmanagementsystem.model.AdminRequestModel;
 import com.taslim.trainingmanagementsystem.repository.AdminRepository;
 import com.taslim.trainingmanagementsystem.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +29,6 @@ public class AdminServiceImpl implements AdminService {
                 .email(adminRequestModel.getEmail())
                 .password(adminRequestModel.getPassword())
                 .build();
-
         AdminEntity savedAdmin = adminRepository.save(admin);
         return ResponseEntity.ok(savedAdmin);
     }
@@ -60,7 +61,6 @@ public class AdminServiceImpl implements AdminService {
             admin.setProfilePicture(adminRequestModel.getProfilePicture());
             admin.setEmail(adminRequestModel.getEmail());
             admin.setPassword(adminRequestModel.getPassword());
-
             AdminEntity updatedAdmin = adminRepository.save(admin);
             return ResponseEntity.ok(updatedAdmin);
         } else {

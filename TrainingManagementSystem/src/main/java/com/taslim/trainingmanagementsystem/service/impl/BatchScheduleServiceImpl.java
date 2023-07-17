@@ -1,18 +1,23 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
+<<<<<<< HEAD
 import com.taslim.trainingmanagementsystem.entity.BatchEntity;
 import com.taslim.trainingmanagementsystem.entity.BatchScheduleEntity;
 import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
 import com.taslim.trainingmanagementsystem.model.BatchScheduleRequestModel;
 import com.taslim.trainingmanagementsystem.repository.BatchRepository;
 import com.taslim.trainingmanagementsystem.repository.BatchScheduleRepository;
+=======
+import com.taslim.trainingmanagementsystem.entity.*;
+import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
+import com.taslim.trainingmanagementsystem.model.BatchScheduleRequestModel;
+import com.taslim.trainingmanagementsystem.repository.*;
+>>>>>>> 5b590c25ac9b4380c4b497dd99f2bb78c55f3cba
 import com.taslim.trainingmanagementsystem.service.BatchScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +31,6 @@ public class BatchScheduleServiceImpl implements BatchScheduleService {
         Optional<BatchEntity> batchOptional = batchRepository.findById(requestModel.getBatchId());
         if (batchOptional.isPresent()) {
             BatchEntity batch = batchOptional.get();
-
             BatchScheduleEntity batchSchedule = BatchScheduleEntity.builder()
                     .batch(batch)
                     .startDate(requestModel.getStartDate())
@@ -35,7 +39,6 @@ public class BatchScheduleServiceImpl implements BatchScheduleService {
                     .endTime(requestModel.getEndTime())
                     .scheduleTime(requestModel.getScheduleTime())
                     .build();
-
             BatchScheduleEntity savedBatchSchedule = batchScheduleRepository.save(batchSchedule);
             return ResponseEntity.ok(savedBatchSchedule);
         } else {
@@ -65,7 +68,6 @@ public class BatchScheduleServiceImpl implements BatchScheduleService {
             Optional<BatchEntity> batchOptional = batchRepository.findById(requestModel.getBatchId());
             if (batchOptional.isPresent()) {
                 BatchEntity batch = batchOptional.get();
-
                 BatchScheduleEntity batchSchedule = batchScheduleOptional.get();
                 batchSchedule.setBatch(batch);
                 batchSchedule.setStartDate(requestModel.getStartDate());
@@ -73,7 +75,6 @@ public class BatchScheduleServiceImpl implements BatchScheduleService {
                 batchSchedule.setStartTime(requestModel.getStartTime());
                 batchSchedule.setEndTime(requestModel.getEndTime());
                 batchSchedule.setScheduleTime(requestModel.getScheduleTime());
-
                 BatchScheduleEntity updatedBatchSchedule = batchScheduleRepository.save(batchSchedule);
                 return ResponseEntity.ok(updatedBatchSchedule);
             } else {

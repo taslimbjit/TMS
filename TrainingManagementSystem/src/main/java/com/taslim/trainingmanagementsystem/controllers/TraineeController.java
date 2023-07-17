@@ -6,7 +6,6 @@ import com.taslim.trainingmanagementsystem.service.TraineeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +19,6 @@ public class TraineeController {
     public ResponseEntity<Object> createTrainee(@RequestBody TraineeRequestModel traineeRequestModel){
         return traineeService.createTrainee(traineeRequestModel);
     }
-
 
     @GetMapping("/all")
     public List<TraineeEntity> getAllTrainees(){

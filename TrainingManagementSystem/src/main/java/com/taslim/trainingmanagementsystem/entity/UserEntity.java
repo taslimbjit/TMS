@@ -1,14 +1,10 @@
 package com.taslim.trainingmanagementsystem.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -28,17 +24,13 @@ public class UserEntity implements UserDetails {
     private String password;
     private String address;
 
-
     @Enumerated(EnumType.STRING)
     private Role role;
-
 //    private List<Role> roles;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
 //        return List.of(new SimpleGrantedAuthority(''CUSTOMER''));
-
     }
 
     @Override

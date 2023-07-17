@@ -6,7 +6,6 @@ import com.taslim.trainingmanagementsystem.service.BatchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -26,11 +25,10 @@ public class BatchController {
         return batchService.getAllBatches();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Object> getBatch(@PathVariable Long id) {
         return batchService.getBatch(id);
     }
-
 
     @PutMapping("/update/{batchId}")
     public ResponseEntity<Object> updateBatch(@PathVariable Long batchId, @RequestBody BatchRequestModel batchRequestModel) {

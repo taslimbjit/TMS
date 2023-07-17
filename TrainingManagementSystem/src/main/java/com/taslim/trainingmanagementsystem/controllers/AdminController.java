@@ -6,7 +6,6 @@ import com.taslim.trainingmanagementsystem.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -26,7 +25,7 @@ public class AdminController {
         return adminService.getAllAdmins();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Object> getAdminById(@PathVariable Long id) {
         return adminService.getAdminById(id);
     }

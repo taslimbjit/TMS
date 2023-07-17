@@ -3,7 +3,6 @@ package com.taslim.trainingmanagementsystem.service;
 import com.taslim.trainingmanagementsystem.entity.AssignmentEntity;
 import com.taslim.trainingmanagementsystem.model.AssignmentRequestModel;
 import org.springframework.http.ResponseEntity;
-
 import java.util.List;
 
 public interface AssignmentService {

@@ -6,7 +6,6 @@ import com.taslim.trainingmanagementsystem.service.AssignmentSubmissionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -26,7 +25,7 @@ public class AssignmentSubmissionController {
         return assignmentSubmissionService.getAllAssignmentSubmissions();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Object> getAssignmentSubmissionById(@PathVariable Long id) {
         return assignmentSubmissionService.getAssignmentSubmissionById(id);
     }

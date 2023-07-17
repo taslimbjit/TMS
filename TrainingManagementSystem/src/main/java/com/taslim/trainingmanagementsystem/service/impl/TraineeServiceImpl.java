@@ -7,12 +7,9 @@ import com.taslim.trainingmanagementsystem.repository.TraineeRepository;
 import com.taslim.trainingmanagementsystem.service.TraineeService;
 import com.taslim.trainingmanagementsystem.utils.JwtService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +34,6 @@ public class TraineeServiceImpl implements TraineeService {
                 .presentAddress(traineeRequestModel.getPresentAddress())
                 .build();
         TraineeEntity savedTrainee = traineeRepository.save(trainee);
-
         return new ResponseEntity<>(savedTrainee, HttpStatus.CREATED);
     }
 
@@ -60,13 +56,11 @@ public class TraineeServiceImpl implements TraineeService {
         return traineeRepository.findById(traineeId);
     }
 
-
     @Override
     public TraineeEntity updateTrainee(Long traineeId, TraineeRequestModel traineeRequestModel) {
         Optional<TraineeEntity> traineeExistedAlready = traineeRepository.findById(traineeId);
         if (traineeExistedAlready.isEmpty()) {
             throw new BookNameAuthorNameAlreadyExistsExcepion("TraineeID Does Not Exist.");
-
         } else {
             TraineeEntity trainee = TraineeEntity.builder()
                     .traineeId(traineeId)

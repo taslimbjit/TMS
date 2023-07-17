@@ -8,9 +8,7 @@ import com.taslim.trainingmanagementsystem.service.TrainerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service
@@ -31,7 +29,6 @@ public class TrainerServiceImpl implements TrainerService {
                 .contactNumber(trainerRequestModel.getContactNumber())
                 .presentAddress(trainerRequestModel.getPresentAddress())
                 .build();
-
         TrainerEntity savedTrainer = trainerRepository.save(trainerEntity);
         return ResponseEntity.ok(savedTrainer);
     }

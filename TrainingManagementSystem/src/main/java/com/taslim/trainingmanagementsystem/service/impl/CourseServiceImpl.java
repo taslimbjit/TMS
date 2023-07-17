@@ -1,18 +1,23 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
+<<<<<<< HEAD
 import com.taslim.trainingmanagementsystem.entity.CourseEntity;
 import com.taslim.trainingmanagementsystem.entity.TrainerEntity;
 import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
 import com.taslim.trainingmanagementsystem.model.CourseRequestModel;
 import com.taslim.trainingmanagementsystem.repository.CourseRepository;
 import com.taslim.trainingmanagementsystem.repository.TrainerRepository;
+=======
+import com.taslim.trainingmanagementsystem.entity.*;
+import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
+import com.taslim.trainingmanagementsystem.model.CourseRequestModel;
+import com.taslim.trainingmanagementsystem.repository.*;
+>>>>>>> 5b590c25ac9b4380c4b497dd99f2bb78c55f3cba
 import com.taslim.trainingmanagementsystem.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -25,12 +30,10 @@ public class CourseServiceImpl implements CourseService {
     public ResponseEntity<Object> createCourse(CourseRequestModel requestModel) {
         TrainerEntity trainer = trainerRepository.findById(requestModel.getTrainerId())
                 .orElseThrow(() -> new BookNameAuthorNameAlreadyExistsExcepion("Trainer not found with ID: " + requestModel.getTrainerId()));
-
         CourseEntity course = CourseEntity.builder()
                 .courseName(requestModel.getCourseName())
                 .trainer(trainer)
                 .build();
-
         CourseEntity savedCourse = courseRepository.save(course);
         return ResponseEntity.ok(savedCourse);
     }
@@ -59,7 +62,6 @@ public class CourseServiceImpl implements CourseService {
             TrainerEntity trainer = trainerRepository.findById(requestModel.getTrainerId())
                     .orElseThrow(() -> new BookNameAuthorNameAlreadyExistsExcepion("Trainer not found with ID: " + requestModel.getTrainerId()));
             course.setTrainer(trainer);
-
             CourseEntity updatedCourse = courseRepository.save(course);
             return ResponseEntity.ok(updatedCourse);
         } else {

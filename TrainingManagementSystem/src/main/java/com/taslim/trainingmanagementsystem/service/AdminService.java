@@ -3,7 +3,6 @@ package com.taslim.trainingmanagementsystem.service;
 import com.taslim.trainingmanagementsystem.entity.AdminEntity;
 import com.taslim.trainingmanagementsystem.model.AdminRequestModel;
 import org.springframework.http.ResponseEntity;
-
 import java.util.List;
 
 public interface AdminService {

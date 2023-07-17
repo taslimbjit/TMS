@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AssignmentRepository extends JpaRepository<AssignmentEntity, Long> {
-    // Add custom query methods if needed
 }

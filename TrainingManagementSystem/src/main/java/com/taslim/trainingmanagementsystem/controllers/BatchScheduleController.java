@@ -6,7 +6,6 @@ import com.taslim.trainingmanagementsystem.service.BatchScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -26,17 +25,17 @@ public class BatchScheduleController {
         return batchScheduleService.getAllBatchSchedules();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Object> getBatchScheduleById(@PathVariable Long id) {
         return batchScheduleService.getBatchScheduleById(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Object> updateBatchSchedule(@PathVariable Long id, @RequestBody BatchScheduleRequestModel requestModel) {
         return batchScheduleService.updateBatchSchedule(id, requestModel);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> deleteBatchSchedule(@PathVariable Long id) {
         return batchScheduleService.deleteBatchSchedule(id);
     }
