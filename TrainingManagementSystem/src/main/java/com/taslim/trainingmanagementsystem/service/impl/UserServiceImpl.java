@@ -1,18 +1,8 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
-<<<<<<< HEAD
-import com.taslim.trainingmanagementsystem.exception.UserAlreadyExistException;
-import com.taslim.trainingmanagementsystem.exception.EmailPasswordNotMatchException;
-import com.taslim.trainingmanagementsystem.entity.Role;
-import com.taslim.trainingmanagementsystem.entity.UserEntity;
-import com.taslim.trainingmanagementsystem.model.AuthenticationRequest;
-import com.taslim.trainingmanagementsystem.model.AuthenticationResponse;
-import com.taslim.trainingmanagementsystem.model.UserRequestModel;
-=======
 import com.taslim.trainingmanagementsystem.exception.*;
 import com.taslim.trainingmanagementsystem.entity.*;
 import com.taslim.trainingmanagementsystem.model.*;
->>>>>>> 5b590c25ac9b4380c4b497dd99f2bb78c55f3cba
 import com.taslim.trainingmanagementsystem.repository.UserRepository;
 import com.taslim.trainingmanagementsystem.service.UserService;
 import com.taslim.trainingmanagementsystem.utils.JwtService;

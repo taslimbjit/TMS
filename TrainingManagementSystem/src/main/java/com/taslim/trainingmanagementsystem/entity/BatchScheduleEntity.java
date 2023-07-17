@@ -1,8 +1,4 @@
 package com.taslim.trainingmanagementsystem.entity;
-<<<<<<< HEAD
-
-=======
->>>>>>> 5b590c25ac9b4380c4b497dd99f2bb78c55f3cba
 
 import jakarta.persistence.*;
 import lombok.*;

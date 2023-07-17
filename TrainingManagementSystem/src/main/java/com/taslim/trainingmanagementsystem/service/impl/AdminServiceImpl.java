@@ -1,12 +1,7 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
 import com.taslim.trainingmanagementsystem.entity.AdminEntity;
-<<<<<<< HEAD
-import com.taslim.trainingmanagementsystem.exception.AdminNotFoundException;
-import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
-=======
 import com.taslim.trainingmanagementsystem.exception.*;
->>>>>>> 5b590c25ac9b4380c4b497dd99f2bb78c55f3cba
 import com.taslim.trainingmanagementsystem.model.AdminRequestModel;
 import com.taslim.trainingmanagementsystem.repository.AdminRepository;
 import com.taslim.trainingmanagementsystem.service.AdminService;

@@ -4,13 +4,7 @@ package com.taslim.trainingmanagementsystem.utils;
 import com.taslim.trainingmanagementsystem.entity.UserEntity;
 import com.taslim.trainingmanagementsystem.exception.NoBooksFoundException;
 import com.taslim.trainingmanagementsystem.repository.UserRepository;
-<<<<<<< HEAD
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-=======
 import io.jsonwebtoken.*;
->>>>>>> 5b590c25ac9b4380c4b497dd99f2bb78c55f3cba
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;

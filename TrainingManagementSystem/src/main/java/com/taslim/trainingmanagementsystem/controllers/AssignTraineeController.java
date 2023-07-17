@@ -1,9 +1,5 @@
 package com.taslim.trainingmanagementsystem.controllers;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 5b590c25ac9b4380c4b497dd99f2bb78c55f3cba
 import com.taslim.trainingmanagementsystem.entity.AssignTraineeEntity;
 import com.taslim.trainingmanagementsystem.model.AssignTraineeRequestModel;
 import com.taslim.trainingmanagementsystem.service.AssignTraineeService;

@@ -1,20 +1,9 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
-<<<<<<< HEAD
-import com.taslim.trainingmanagementsystem.entity.AssignTraineeEntity;
-import com.taslim.trainingmanagementsystem.entity.BatchEntity;
-import com.taslim.trainingmanagementsystem.entity.TraineeEntity;
-import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
-import com.taslim.trainingmanagementsystem.model.AssignTraineeRequestModel;
-import com.taslim.trainingmanagementsystem.repository.AssignTraineeRepository;
-import com.taslim.trainingmanagementsystem.repository.BatchRepository;
-import com.taslim.trainingmanagementsystem.repository.TraineeRepository;
-=======
 import com.taslim.trainingmanagementsystem.entity.*;
 import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
 import com.taslim.trainingmanagementsystem.model.AssignTraineeRequestModel;
 import com.taslim.trainingmanagementsystem.repository.*;
->>>>>>> 5b590c25ac9b4380c4b497dd99f2bb78c55f3cba
 import com.taslim.trainingmanagementsystem.service.AssignTraineeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

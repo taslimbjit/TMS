@@ -2,9 +2,7 @@ package com.taslim.trainingmanagementsystem.config;
 
 import com.taslim.trainingmanagementsystem.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
+import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -45,8 +43,6 @@ public class SecurityConfig {
                 .requestMatchers("/trainee/login","/assignment-submissions/create","/batch-schedules/all"
                         ,"/courses/id/**","/batch-schedules/id/**","/assignment-submissions/id/**")
                 .hasAnyAuthority("TRAINEE")
-                .requestMatchers("/user/register","user/login")
-                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
