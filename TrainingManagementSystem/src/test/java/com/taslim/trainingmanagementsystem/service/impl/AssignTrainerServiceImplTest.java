@@ -1,34 +1,22 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
 import com.taslim.trainingmanagementsystem.entity.*;
-import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
-import com.taslim.trainingmanagementsystem.model.AssignTrainerRequestModel;
-import com.taslim.trainingmanagementsystem.repository.AssignTrainerRepository;
-import com.taslim.trainingmanagementsystem.repository.BatchRepository;
-import com.taslim.trainingmanagementsystem.repository.TrainerRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import com.taslim.trainingmanagementsystem.model.*;
+import com.taslim.trainingmanagementsystem.repository.*;
+import org.junit.jupiter.api.*;
+import org.mockito.*;
 import org.springframework.http.ResponseEntity;
-
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class AssignTrainerServiceImplTest {
-
     @Mock
     private AssignTrainerRepository assignTrainerRepository;
-
     @Mock
     private BatchRepository batchRepository;
-
     @Mock
     private TrainerRepository trainerRepository;
-
     @InjectMocks
     private AssignTrainerServiceImpl assignTrainerService;
 
@@ -82,6 +70,4 @@ public class AssignTrainerServiceImplTest {
         verify(trainerRepository, times(1)).findById(requestModel.getTrainerId());
         verify(assignTrainerRepository, times(1)).save(any(AssignTrainerEntity.class));
     }
-
-    // Add more test methods for other service methods (getAllAssignTrainers, getAssignTrainerById, updateAssignTrainer, deleteAssignTrainer) here...
 }

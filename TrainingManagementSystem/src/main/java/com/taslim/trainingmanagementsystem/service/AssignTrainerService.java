@@ -8,14 +8,9 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface AssignTrainerService {
-
     ResponseEntity<Object> assignTrainer(AssignTrainerRequestModel requestModel);
-
     List<AssignTrainerEntity> getAllAssignTrainers();
-
     ResponseEntity<Object> getAssignTrainerById(Long id);
-
     ResponseEntity<Object> updateAssignTrainer(Long id, AssignTrainerRequestModel requestModel);
-
     ResponseEntity<Object> deleteAssignTrainer(Long id);
 }

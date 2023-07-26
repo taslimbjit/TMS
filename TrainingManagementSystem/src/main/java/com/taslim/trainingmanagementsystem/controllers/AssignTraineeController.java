@@ -12,7 +12,6 @@ import java.util.List;
 @RequestMapping("/assign-trainees")
 @RequiredArgsConstructor
 public class AssignTraineeController {
-
     private final AssignTraineeService assignTraineeService;
 
     @PostMapping("/create")

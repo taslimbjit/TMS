@@ -10,7 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class BatchEntity extends BaseEntity{
-
     private String batchName;
     private String startingDate;
     private String endingDate;

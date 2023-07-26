@@ -1,8 +1,6 @@
 package com.taslim.trainingmanagementsystem.service;
 
-import com.taslim.trainingmanagementsystem.model.AuthenticationRequest;
-import com.taslim.trainingmanagementsystem.model.AuthenticationResponse;
-import com.taslim.trainingmanagementsystem.model.UserRequestModel;
+import com.taslim.trainingmanagementsystem.model.*;
 import org.springframework.http.ResponseEntity;
 
 public interface UserService {

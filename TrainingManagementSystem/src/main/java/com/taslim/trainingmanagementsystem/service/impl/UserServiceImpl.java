@@ -3,10 +3,9 @@ package com.taslim.trainingmanagementsystem.service.impl;
 import com.taslim.trainingmanagementsystem.exception.*;
 import com.taslim.trainingmanagementsystem.entity.*;
 import com.taslim.trainingmanagementsystem.model.*;
-import com.taslim.trainingmanagementsystem.repository.UserRepository;
-import com.taslim.trainingmanagementsystem.service.UserService;
-import com.taslim.trainingmanagementsystem.utils.JwtService;
-import com.taslim.trainingmanagementsystem.utils.Role;
+import com.taslim.trainingmanagementsystem.repository.*;
+import com.taslim.trainingmanagementsystem.service.*;
+import com.taslim.trainingmanagementsystem.utils.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.security.authentication.*;
@@ -27,7 +26,6 @@ public class UserServiceImpl implements UserService {
         UserEntity userExistedAlready = userRepository.findByEmail(requestModel.getEmail());
         if (userExistedAlready != null) {
             throw new UserAlreadyExistException("This Email Already Existed");
-
         }
         UserEntity userEntity = UserEntity.builder()
                 .email(requestModel.getEmail())
@@ -51,10 +49,8 @@ public class UserServiceImpl implements UserService {
             case "ADMIN" -> role = Role.ADMIN;
             default -> throw new IllegalArgumentException("Invalid role!");
         }
-
         return role;
     }
-
 
     public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
         try {

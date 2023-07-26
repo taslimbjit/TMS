@@ -12,7 +12,6 @@ import java.util.List;
 @RequestMapping("/batch-schedules")
 @RequiredArgsConstructor
 public class BatchScheduleController {
-
     private final BatchScheduleService batchScheduleService;
 
     @PostMapping("/create")

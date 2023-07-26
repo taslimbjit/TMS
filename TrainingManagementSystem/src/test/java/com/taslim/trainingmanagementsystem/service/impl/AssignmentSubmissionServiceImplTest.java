@@ -1,34 +1,22 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
 import com.taslim.trainingmanagementsystem.entity.*;
-import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
-import com.taslim.trainingmanagementsystem.model.AssignmentSubmissionRequestModel;
-import com.taslim.trainingmanagementsystem.repository.AssignmentRepository;
-import com.taslim.trainingmanagementsystem.repository.AssignmentSubmissionRepository;
-import com.taslim.trainingmanagementsystem.repository.TraineeRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import com.taslim.trainingmanagementsystem.model.*;
+import com.taslim.trainingmanagementsystem.repository.*;
+import org.junit.jupiter.api.*;
+import org.mockito.*;
 import org.springframework.http.ResponseEntity;
-
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class AssignmentSubmissionServiceImplTest {
-
     @Mock
     private AssignmentSubmissionRepository assignmentSubmissionRepository;
-
     @Mock
     private AssignmentRepository assignmentRepository;
-
     @Mock
     private TraineeRepository traineeRepository;
-
     @InjectMocks
     private AssignmentSubmissionServiceImpl assignmentSubmissionService;
 
@@ -82,6 +70,4 @@ public class AssignmentSubmissionServiceImplTest {
         verify(traineeRepository, times(1)).findById(submissionRequestModel.getTraineeId());
         verify(assignmentSubmissionRepository, times(1)).save(any(AssignmentSubmissionEntity.class));
     }
-
-    // Add more test methods for other service methods (getAllAssignmentSubmissions, getAssignmentSubmissionById, updateAssignmentSubmission, deleteAssignmentSubmission) here...
 }

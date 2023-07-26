@@ -1,8 +1,6 @@
 package com.taslim.trainingmanagementsystem.controllers;
 
-import com.taslim.trainingmanagementsystem.model.UserRequestModel;
-import com.taslim.trainingmanagementsystem.model.AuthenticationResponse;
-import com.taslim.trainingmanagementsystem.model.AuthenticationRequest;
+import com.taslim.trainingmanagementsystem.model.*;
 import com.taslim.trainingmanagementsystem.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

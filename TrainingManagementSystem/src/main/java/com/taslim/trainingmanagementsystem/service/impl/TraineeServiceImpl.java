@@ -1,32 +1,21 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
-import com.taslim.trainingmanagementsystem.entity.UserEntity;
-import com.taslim.trainingmanagementsystem.exception.NoTraineesFoundException;
-import com.taslim.trainingmanagementsystem.repository.UserRepository;
+import com.taslim.trainingmanagementsystem.entity.*;
+import com.taslim.trainingmanagementsystem.exception.*;
+import com.taslim.trainingmanagementsystem.repository.*;
 import com.taslim.trainingmanagementsystem.utils.Role;
-import com.taslim.trainingmanagementsystem.entity.TraineeEntity;
-import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
-import com.taslim.trainingmanagementsystem.model.TraineeRequestModel;
-import com.taslim.trainingmanagementsystem.model.UserRequestModel;
-import com.taslim.trainingmanagementsystem.repository.TraineeRepository;
-import com.taslim.trainingmanagementsystem.service.TraineeService;
-import com.taslim.trainingmanagementsystem.service.UserService;
-import jakarta.persistence.EntityNotFoundException;
+import com.taslim.trainingmanagementsystem.model.*;
+import com.taslim.trainingmanagementsystem.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class TraineeServiceImpl implements TraineeService {
-
     private final TraineeRepository traineeRepository;
     private final UserService userService;
     private final UserRepository userRepository;
@@ -47,7 +36,6 @@ public class TraineeServiceImpl implements TraineeService {
                 .presentAddress(traineeRequestModel.getPresentAddress())
                 .build();
         TraineeEntity savedTrainee = traineeRepository.save(trainee);
-
         UserRequestModel model = UserRequestModel.builder()
                 .email(trainee.getEmail())
                 .name(trainee.getFullName())
@@ -55,7 +43,6 @@ public class TraineeServiceImpl implements TraineeService {
                 .role(Role.TRAINEE.name())
                 .password(traineeRequestModel.getPassword())
                 .build();
-
         ResponseEntity<Object> register = userService.register(model);
         if (register.getStatusCode()== HttpStatus.CREATED){
             log.info("Successfully registered");
@@ -72,7 +59,6 @@ public class TraineeServiceImpl implements TraineeService {
         }
         return trainees;
     }
-
 
     @Override
     public Optional<TraineeEntity> getTrainee(Long traineeId) {
@@ -106,17 +92,13 @@ public class TraineeServiceImpl implements TraineeService {
         if (traineeExistedAlready.isEmpty()) {
             throw new NoTraineesFoundException("TraineeID Does Not Exist.");
         }
-
         TraineeEntity entity = traineeExistedAlready.get();
-
         UserEntity user = userRepository.findByEmail(entity.getEmail());
         if (Objects.isNull(user)) {
             throw new EntityNotFoundException("User not found");
         }
-
         user.setActive(Boolean.FALSE);
         entity.setActive(Boolean.FALSE);
-
         traineeRepository.save(entity);
         userRepository.save(user);
     }

@@ -1,34 +1,24 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
-import com.taslim.trainingmanagementsystem.entity.UserEntity;
-import com.taslim.trainingmanagementsystem.exception.NoTrainersFoundException;
-import com.taslim.trainingmanagementsystem.repository.UserRepository;
+import com.taslim.trainingmanagementsystem.entity.*;
+import com.taslim.trainingmanagementsystem.exception.*;
+import com.taslim.trainingmanagementsystem.repository.*;
 import com.taslim.trainingmanagementsystem.utils.Role;
-import com.taslim.trainingmanagementsystem.entity.TrainerEntity;
-import com.taslim.trainingmanagementsystem.model.TrainerRequestModel;
-import com.taslim.trainingmanagementsystem.model.UserRequestModel;
-import com.taslim.trainingmanagementsystem.repository.TrainerRepository;
-import com.taslim.trainingmanagementsystem.service.TrainerService;
-import com.taslim.trainingmanagementsystem.service.UserService;
-import jakarta.persistence.EntityNotFoundException;
+import com.taslim.trainingmanagementsystem.model.*;
+import com.taslim.trainingmanagementsystem.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
-
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class TrainerServiceImpl implements TrainerService {
-
     private final TrainerRepository trainerRepository;
     private final UserService userService;
     private final UserRepository userRepository;
-
 
     @Override
     public ResponseEntity<Object> createTrainer(TrainerRequestModel trainerRequestModel) {
@@ -43,7 +33,6 @@ public class TrainerServiceImpl implements TrainerService {
                 .presentAddress(trainerRequestModel.getPresentAddress())
                 .build();
         TrainerEntity savedTrainer = trainerRepository.save(trainerEntity);
-
         UserRequestModel model = UserRequestModel.builder()
                 .email(trainerRequestModel.getEmail())
                 .name(trainerRequestModel.getFullName())
@@ -51,12 +40,10 @@ public class TrainerServiceImpl implements TrainerService {
                 .role(Role.TRAINER.name())
                 .password(trainerRequestModel.getPassword())
                 .build();
-
         ResponseEntity<Object> register = userService.register(model);
         if (register.getStatusCode() == HttpStatus.CREATED) {
             log.info("Successfully registered");
         }
-
         return ResponseEntity.ok(savedTrainer);
     }
 
@@ -108,12 +95,9 @@ public class TrainerServiceImpl implements TrainerService {
             if (Objects.isNull(user)) {
                 throw new EntityNotFoundException("User not found");
             }
-
             user.setActive(Boolean.FALSE);
-
             trainerRepository.save(entity);
             userRepository.save(user);
-
         } else
             throw new NoTrainersFoundException("TrainerID Does Not Exist.");
 

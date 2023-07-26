@@ -1,33 +1,22 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
 import com.taslim.trainingmanagementsystem.entity.*;
-import com.taslim.trainingmanagementsystem.model.AssignTraineeRequestModel;
-import com.taslim.trainingmanagementsystem.repository.AssignTraineeRepository;
-import com.taslim.trainingmanagementsystem.repository.BatchRepository;
-import com.taslim.trainingmanagementsystem.repository.TraineeRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import com.taslim.trainingmanagementsystem.model.*;
+import com.taslim.trainingmanagementsystem.repository.*;
+import org.junit.jupiter.api.*;
+import org.mockito.*;
 import org.springframework.http.ResponseEntity;
-
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class AssignTraineeServiceImplTest {
-
     @Mock
     private AssignTraineeRepository assignTraineeRepository;
-
     @Mock
     private BatchRepository batchRepository;
-
     @Mock
     private TraineeRepository traineeRepository;
-
     @InjectMocks
     private AssignTraineeServiceImpl assignTraineeService;
 
@@ -81,6 +70,4 @@ public class AssignTraineeServiceImplTest {
         verify(traineeRepository, times(1)).findById(requestModel.getTraineeId());
         verify(assignTraineeRepository, times(1)).save(any(AssignTraineeEntity.class));
     }
-
-    // Add more test methods for other service methods (getAllAssignTrainees, getAssignTraineeById, updateAssignTrainee, deleteAssignTrainee) here...
 }

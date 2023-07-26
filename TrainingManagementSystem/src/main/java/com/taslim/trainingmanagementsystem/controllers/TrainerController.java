@@ -13,7 +13,6 @@ import java.util.Optional;
 @RequestMapping("/trainers")
 @RequiredArgsConstructor
 public class TrainerController {
-
     private final TrainerService trainerService;
 
     @PostMapping("/create")

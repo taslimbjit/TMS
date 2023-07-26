@@ -10,7 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class TraineeEntity extends BaseEntity{
-
     private String fullName;
     private String profilePicture;
     private String gender;

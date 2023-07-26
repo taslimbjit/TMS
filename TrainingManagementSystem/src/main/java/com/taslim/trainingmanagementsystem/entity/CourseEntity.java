@@ -10,7 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class CourseEntity extends BaseEntity {
-
     private String courseName;
     @ManyToOne
     @JoinColumn(name = "trainer_id")

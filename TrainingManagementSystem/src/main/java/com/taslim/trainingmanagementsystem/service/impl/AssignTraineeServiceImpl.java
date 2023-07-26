@@ -1,7 +1,7 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
 import com.taslim.trainingmanagementsystem.entity.*;
-import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
+import com.taslim.trainingmanagementsystem.exception.*;
 import com.taslim.trainingmanagementsystem.model.AssignTraineeRequestModel;
 import com.taslim.trainingmanagementsystem.repository.*;
 import com.taslim.trainingmanagementsystem.service.AssignTraineeService;
@@ -13,7 +13,6 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class AssignTraineeServiceImpl implements AssignTraineeService {
-
     private final AssignTraineeRepository assignTraineeRepository;
     private final BatchRepository batchRepository;
     private final TraineeRepository traineeRepository;
@@ -23,7 +22,7 @@ public class AssignTraineeServiceImpl implements AssignTraineeService {
         Optional<BatchEntity> batchOptional = batchRepository.findById(requestModel.getBatchId());
         Optional<TraineeEntity> traineeOptional = traineeRepository.findById(requestModel.getTraineeId());
         if (batchOptional.isEmpty() || traineeOptional.isEmpty()) {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Invalid batch or trainee ID.");
+            throw new InvalidBatchTraineeExcepion("Invalid batch or trainee ID.");
         }
         BatchEntity batch = batchOptional.get();
         TraineeEntity trainee = traineeOptional.get();
@@ -46,7 +45,7 @@ public class AssignTraineeServiceImpl implements AssignTraineeService {
         if (assignTraineeOptional.isPresent()) {
             return ResponseEntity.ok(assignTraineeOptional.get());
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Assign Trainee not found with ID: " + id);
+            throw new AssignTraineeNotFoundExcepion("Assign Trainee not found with ID: " + id);
         }
     }
 
@@ -57,7 +56,7 @@ public class AssignTraineeServiceImpl implements AssignTraineeService {
             Optional<BatchEntity> batchOptional = batchRepository.findById(requestModel.getBatchId());
             Optional<TraineeEntity> traineeOptional = traineeRepository.findById(requestModel.getTraineeId());
             if (batchOptional.isEmpty() || traineeOptional.isEmpty()) {
-                throw new BookNameAuthorNameAlreadyExistsExcepion("Invalid batch or trainee ID.");
+                throw new InvalidBatchTraineeExcepion("Invalid batch or trainee ID.");
             }
             AssignTraineeEntity assignTrainee = assignTraineeOptional.get();
             assignTrainee.setBatch(batchOptional.get());
@@ -65,7 +64,7 @@ public class AssignTraineeServiceImpl implements AssignTraineeService {
             AssignTraineeEntity updatedAssignTrainee = assignTraineeRepository.save(assignTrainee);
             return ResponseEntity.ok(updatedAssignTrainee);
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Assign Trainee not found with ID: " + id);
+            throw new AssignTraineeNotFoundExcepion("Assign Trainee not found with ID: " + id);
         }
     }
 
@@ -78,7 +77,7 @@ public class AssignTraineeServiceImpl implements AssignTraineeService {
             assignTraineeRepository.save(entity);
             return ResponseEntity.ok("Assign Trainee with ID: " + id + " has been deleted.");
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Assign Trainee not found with ID: " + id);
+            throw new AssignTraineeNotFoundExcepion("Assign Trainee not found with ID: " + id);
         }
     }
 }

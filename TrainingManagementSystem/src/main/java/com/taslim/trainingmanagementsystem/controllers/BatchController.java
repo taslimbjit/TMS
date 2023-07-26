@@ -12,7 +12,6 @@ import java.util.List;
 @RequestMapping("/batches")
 @RequiredArgsConstructor
 public class BatchController {
-
     private final BatchService batchService;
 
     @PostMapping("/create")

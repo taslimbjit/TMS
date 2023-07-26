@@ -3,11 +3,9 @@ package com.taslim.trainingmanagementsystem.service.impl;
 import com.taslim.trainingmanagementsystem.entity.AdminEntity;
 import com.taslim.trainingmanagementsystem.utils.Role;
 import com.taslim.trainingmanagementsystem.exception.*;
-import com.taslim.trainingmanagementsystem.model.AdminRequestModel;
-import com.taslim.trainingmanagementsystem.model.UserRequestModel;
+import com.taslim.trainingmanagementsystem.model.*;
 import com.taslim.trainingmanagementsystem.repository.AdminRepository;
-import com.taslim.trainingmanagementsystem.service.AdminService;
-import com.taslim.trainingmanagementsystem.service.UserService;
+import com.taslim.trainingmanagementsystem.service.*;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +19,6 @@ import java.util.*;
 @Slf4j
 @Transactional
 public class AdminServiceImpl implements AdminService {
-
     private final AdminRepository adminRepository;
     private final UserService userService;
 
@@ -32,7 +29,6 @@ public class AdminServiceImpl implements AdminService {
         if (Objects.nonNull(adminExistedAlready)) {
             throw new UserAlreadyExistException("This Email Already Existed");
         }
-
         AdminEntity admin = AdminEntity.builder()
                 .fullName(adminRequestModel.getFullName())
                 .profilePicture(adminRequestModel.getProfilePicture())
@@ -59,7 +55,7 @@ public class AdminServiceImpl implements AdminService {
     public List<AdminEntity> getAllAdmins() {
         List<AdminEntity> admins = adminRepository.findAll();
         if (admins.isEmpty()) {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("No admins found.");
+            throw new AdminNotFoundException("No admins found.");
         }
         return admins;
     }

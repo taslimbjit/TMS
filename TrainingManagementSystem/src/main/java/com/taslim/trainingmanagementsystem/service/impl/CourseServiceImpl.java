@@ -1,7 +1,7 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
 import com.taslim.trainingmanagementsystem.entity.*;
-import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
+import com.taslim.trainingmanagementsystem.exception.*;
 import com.taslim.trainingmanagementsystem.model.CourseRequestModel;
 import com.taslim.trainingmanagementsystem.repository.*;
 import com.taslim.trainingmanagementsystem.service.CourseService;
@@ -13,14 +13,13 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class CourseServiceImpl implements CourseService {
-
     private final CourseRepository courseRepository;
     private final TrainerRepository trainerRepository;
 
     @Override
     public ResponseEntity<Object> createCourse(CourseRequestModel requestModel) {
         TrainerEntity trainer = trainerRepository.findById(requestModel.getTrainerId())
-                .orElseThrow(() -> new BookNameAuthorNameAlreadyExistsExcepion("Trainer not found with ID: " + requestModel.getTrainerId()));
+                .orElseThrow(() -> new NoTrainersFoundException("Trainer not found with ID: " + requestModel.getTrainerId()));
         CourseEntity course = CourseEntity.builder()
                 .courseName(requestModel.getCourseName())
                 .trainer(trainer)
@@ -40,7 +39,7 @@ public class CourseServiceImpl implements CourseService {
         if (courseOptional.isPresent()) {
             return ResponseEntity.ok(courseOptional.get());
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Course not found with ID: " + id);
+            throw new CourseNotFoundExcepion("Course not found with ID: " + id);
         }
     }
 
@@ -51,12 +50,12 @@ public class CourseServiceImpl implements CourseService {
             CourseEntity course = courseOptional.get();
             course.setCourseName(requestModel.getCourseName());
             TrainerEntity trainer = trainerRepository.findById(requestModel.getTrainerId())
-                    .orElseThrow(() -> new BookNameAuthorNameAlreadyExistsExcepion("Trainer not found with ID: " + requestModel.getTrainerId()));
+                    .orElseThrow(() -> new NoTrainersFoundException("Trainer not found with ID: " + requestModel.getTrainerId()));
             course.setTrainer(trainer);
             CourseEntity updatedCourse = courseRepository.save(course);
             return ResponseEntity.ok(updatedCourse);
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Course not found with ID: " + id);
+            throw new CourseNotFoundExcepion("Course not found with ID: " + id);
         }
     }
 
@@ -69,7 +68,8 @@ public class CourseServiceImpl implements CourseService {
             courseRepository.save(entity);
             return ResponseEntity.ok("Course with ID: " + id + " has been deleted.");
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Course not found with ID: " + id);
+            throw new CourseNotFoundExcepion("Course not found with ID: " + id);
         }
     }
 }
+

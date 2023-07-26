@@ -13,7 +13,6 @@ import java.util.List;
 @RequestMapping("/assign-trainer")
 @RequiredArgsConstructor
 public class AssignTrainerController {
-
     private final AssignTrainerService assignTrainerService;
 
     @PostMapping("/create")

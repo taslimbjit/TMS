@@ -1,35 +1,23 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
-import com.taslim.trainingmanagementsystem.entity.CourseEntity;
-import com.taslim.trainingmanagementsystem.entity.TrainerEntity;
-import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
-import com.taslim.trainingmanagementsystem.model.CourseRequestModel;
-import com.taslim.trainingmanagementsystem.repository.CourseRepository;
-import com.taslim.trainingmanagementsystem.repository.TrainerRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import com.taslim.trainingmanagementsystem.entity.*;
+import com.taslim.trainingmanagementsystem.model.*;
+import com.taslim.trainingmanagementsystem.repository.*;
+import org.junit.jupiter.api.*;
+import org.mockito.*;
 import org.springframework.http.ResponseEntity;
-
 import java.util.Optional;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class CourseServiceImplTest {
-
     @Mock
     private CourseRepository courseRepository;
-
     @Mock
     private TrainerRepository trainerRepository;
-
     @InjectMocks
     private CourseServiceImpl courseService;
-
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -75,6 +63,4 @@ public class CourseServiceImplTest {
         verify(trainerRepository, times(1)).findById(trainerId);
         verify(courseRepository, times(1)).save(any(CourseEntity.class));
     }
-
-    // Add more test methods for other service methods (getAllCourses, getCourseById, updateCourse, deleteCourse) here...
 }

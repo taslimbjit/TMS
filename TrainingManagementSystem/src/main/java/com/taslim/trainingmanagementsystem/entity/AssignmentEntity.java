@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class AssignmentEntity extends BaseEntity{
-
     @ManyToOne
     @JoinColumn(name = "batch_id")
     private BatchEntity batch;

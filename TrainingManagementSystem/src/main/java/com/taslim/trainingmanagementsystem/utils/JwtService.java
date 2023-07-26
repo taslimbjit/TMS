@@ -1,9 +1,9 @@
 package com.taslim.trainingmanagementsystem.utils;
 
 
-import com.taslim.trainingmanagementsystem.entity.UserEntity;
-import com.taslim.trainingmanagementsystem.exception.NoBooksFoundException;
-import com.taslim.trainingmanagementsystem.repository.UserRepository;
+import com.taslim.trainingmanagementsystem.entity.*;
+import com.taslim.trainingmanagementsystem.exception.*;
+import com.taslim.trainingmanagementsystem.repository.*;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -17,9 +17,7 @@ import java.util.function.Function;
 @Component
 @RequiredArgsConstructor
 public class JwtService {
-
     private final UserRepository usersRepository;
-
     private static final String SECRET_KEY = "26452948404D635166546A576E5A7234753778214125442A462D4A614E645267";
 
     public String generateToken(UserDetails userDetails){
@@ -41,7 +39,7 @@ public class JwtService {
         final String username = extractUsername(token);
         UserEntity userEntity=  usersRepository.findByEmail(username);
         if(userEntity == null){
-            throw new NoBooksFoundException("Invalid token.");
+            throw new InvalidTokenException("Invalid token.");
 //            return false;
         }
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
@@ -58,10 +56,12 @@ public class JwtService {
     public String extractUsername(String jwt) {
         return extractClaim(jwt,Claims::getSubject);
     }
+
     public <T> T extractClaim(String token, Function<Claims,T> claimsResolver){
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
+
     private Claims extractAllClaims(String token){
         return Jwts.parserBuilder()
                 .setSigningKey(getSignInKey())

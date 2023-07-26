@@ -1,7 +1,7 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
 import com.taslim.trainingmanagementsystem.entity.*;
-import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
+import com.taslim.trainingmanagementsystem.exception.*;
 import com.taslim.trainingmanagementsystem.model.BatchScheduleRequestModel;
 import com.taslim.trainingmanagementsystem.repository.*;
 import com.taslim.trainingmanagementsystem.service.BatchScheduleService;
@@ -13,7 +13,6 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class BatchScheduleServiceImpl implements BatchScheduleService {
-
     private final BatchScheduleRepository batchScheduleRepository;
     private final BatchRepository batchRepository;
 
@@ -33,7 +32,7 @@ public class BatchScheduleServiceImpl implements BatchScheduleService {
             BatchScheduleEntity savedBatchSchedule = batchScheduleRepository.save(batchSchedule);
             return ResponseEntity.ok(savedBatchSchedule);
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Batch not found with ID: " + requestModel.getBatchId());
+            throw new BatchNotFoundExcepion("Batch not found with ID: " + requestModel.getBatchId());
         }
     }
 
@@ -48,7 +47,7 @@ public class BatchScheduleServiceImpl implements BatchScheduleService {
         if (batchScheduleOptional.isPresent()) {
             return ResponseEntity.ok(batchScheduleOptional.get());
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Batch Schedule not found with ID: " + id);
+            throw new BatchScheduleNotFoundExcepion("Batch Schedule not found with ID: " + id);
         }
     }
 
@@ -69,10 +68,10 @@ public class BatchScheduleServiceImpl implements BatchScheduleService {
                 BatchScheduleEntity updatedBatchSchedule = batchScheduleRepository.save(batchSchedule);
                 return ResponseEntity.ok(updatedBatchSchedule);
             } else {
-                throw new BookNameAuthorNameAlreadyExistsExcepion("Batch not found with ID: " + requestModel.getBatchId());
+                throw new BatchNotFoundExcepion("Batch not found with ID: " + requestModel.getBatchId());
             }
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Batch Schedule not found with ID: " + id);
+            throw new BatchScheduleNotFoundExcepion("Batch Schedule not found with ID: " + id);
         }
     }
 
@@ -85,7 +84,7 @@ public class BatchScheduleServiceImpl implements BatchScheduleService {
             batchScheduleRepository.save(entity);
             return ResponseEntity.ok("Batch Schedule with ID: " + id + " has been deleted.");
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Batch Schedule not found with ID: " + id);
+            throw new BatchScheduleNotFoundExcepion("Batch Schedule not found with ID: " + id);
         }
     }
 }

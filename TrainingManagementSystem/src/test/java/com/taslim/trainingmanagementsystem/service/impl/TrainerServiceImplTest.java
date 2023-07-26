@@ -1,41 +1,25 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
-import com.taslim.trainingmanagementsystem.entity.TrainerEntity;
-import com.taslim.trainingmanagementsystem.exception.NoTrainersFoundException;
-import com.taslim.trainingmanagementsystem.model.TrainerRequestModel;
-import com.taslim.trainingmanagementsystem.model.UserRequestModel;
-import com.taslim.trainingmanagementsystem.repository.TrainerRepository;
-import com.taslim.trainingmanagementsystem.repository.UserRepository;
-import com.taslim.trainingmanagementsystem.service.UserService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
+import com.taslim.trainingmanagementsystem.entity.*;
+import com.taslim.trainingmanagementsystem.model.*;
+import com.taslim.trainingmanagementsystem.repository.*;
+import com.taslim.trainingmanagementsystem.service.*;
+import org.junit.jupiter.api.*;
+import org.mockito.*;
+import org.springframework.http.*;
+import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class TrainerServiceImplTest {
-
     @Mock
     private TrainerRepository trainerRepository;
-
     @Mock
     private UserService userService;
-
     @Mock
     private UserRepository userRepository;
-
     @InjectMocks
     private TrainerServiceImpl trainerService;
-
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -122,6 +106,4 @@ public class TrainerServiceImplTest {
         // Verify that trainerRepository.findAll() method was called once
         verify(trainerRepository, times(1)).findAll();
     }
-
-    // Add more test methods for other service methods (getTrainer, updateTrainer, deleteTrainer) here...
 }

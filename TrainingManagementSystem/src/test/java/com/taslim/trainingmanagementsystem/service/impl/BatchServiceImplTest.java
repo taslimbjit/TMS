@@ -1,27 +1,20 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
-import com.taslim.trainingmanagementsystem.entity.BatchEntity;
-import com.taslim.trainingmanagementsystem.model.BatchRequestModel;
-import com.taslim.trainingmanagementsystem.repository.BatchRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import com.taslim.trainingmanagementsystem.entity.*;
+import com.taslim.trainingmanagementsystem.model.*;
+import com.taslim.trainingmanagementsystem.repository.*;
+import org.junit.jupiter.api.*;
+import org.mockito.*;
 import org.springframework.http.ResponseEntity;
 import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class BatchServiceImplTest {
-
     @Mock
     private BatchRepository batchRepository;
-
     @InjectMocks
     private BatchServiceImpl batchService;
-
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -62,6 +55,4 @@ public class BatchServiceImplTest {
         // Verify that batchRepository.save() method was called once
         verify(batchRepository, times(1)).save(any(BatchEntity.class));
     }
-
-    // Add more test methods for other service methods (getAllBatches, getBatch, updateBatch, deleteBatch) here...
 }

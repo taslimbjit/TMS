@@ -1,7 +1,8 @@
 package com.taslim.trainingmanagementsystem.exception;
 
-public class EntityNotFoundException extends Throwable {
-    public EntityNotFoundException(String message) {
-        super(message);
+public class EntityNotFoundException extends RuntimeException{
+    public EntityNotFoundException(String s) {
+        super(s);
     }
+
 }

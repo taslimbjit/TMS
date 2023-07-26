@@ -1,35 +1,21 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
-import com.taslim.trainingmanagementsystem.entity.BatchEntity;
-import com.taslim.trainingmanagementsystem.entity.BatchScheduleEntity;
-import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
-import com.taslim.trainingmanagementsystem.model.BatchScheduleRequestModel;
-import com.taslim.trainingmanagementsystem.repository.BatchRepository;
-import com.taslim.trainingmanagementsystem.repository.BatchScheduleRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import com.taslim.trainingmanagementsystem.entity.*;
+import com.taslim.trainingmanagementsystem.model.*;
+import com.taslim.trainingmanagementsystem.repository.*;
+import org.junit.jupiter.api.*;
+import org.mockito.*;
 import org.springframework.http.ResponseEntity;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
+import java.time.*;
+import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class BatchScheduleServiceImplTest {
-
     @Mock
     private BatchScheduleRepository batchScheduleRepository;
-
     @Mock
     private BatchRepository batchRepository;
-
     @InjectMocks
     private BatchScheduleServiceImpl batchScheduleService;
 
@@ -90,6 +76,4 @@ public class BatchScheduleServiceImplTest {
         verify(batchRepository, times(1)).findById(requestModel.getBatchId());
         verify(batchScheduleRepository, times(1)).save(any(BatchScheduleEntity.class));
     }
-
-    // Add more test methods for other service methods (getAllBatchSchedules, getBatchScheduleById, updateBatchSchedule, deleteBatchSchedule) here...
 }

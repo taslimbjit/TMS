@@ -1,45 +1,31 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
 import com.taslim.trainingmanagementsystem.entity.*;
-import com.taslim.trainingmanagementsystem.model.AssignmentRequestModel;
-import com.taslim.trainingmanagementsystem.repository.AssignmentRepository;
-import com.taslim.trainingmanagementsystem.repository.BatchRepository;
-import com.taslim.trainingmanagementsystem.repository.CourseRepository;
-import com.taslim.trainingmanagementsystem.repository.TrainerRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import com.taslim.trainingmanagementsystem.model.*;
+import com.taslim.trainingmanagementsystem.repository.*;
+import org.junit.jupiter.api.*;
+import org.mockito.*;
 import org.springframework.http.ResponseEntity;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class AssignmentServiceImplTest {
-
     @Mock
     private AssignmentRepository assignmentRepository;
     @Mock
     private BatchRepository batchRepository;
-
     @Mock
     private TrainerRepository trainerRepository;
-
     @Mock
     private CourseRepository courseRepository;
-
     @InjectMocks
     private AssignmentServiceImpl assignmentService;
-
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
     @Test
     public void testCreateAssignment() {
         // Input data for the test
@@ -108,6 +94,4 @@ public class AssignmentServiceImplTest {
         verify(courseRepository, times(1)).findById(requestModel.getCourseId());
         verify(assignmentRepository, times(1)).save(any(AssignmentEntity.class));
     }
-
-    // Add more test methods for other service methods (getAllAssignments, getAssignmentById, updateAssignment, deleteAssignment) here...
 }

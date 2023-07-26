@@ -1,7 +1,7 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
 import com.taslim.trainingmanagementsystem.entity.BatchEntity;
-import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
+import com.taslim.trainingmanagementsystem.exception.BatchNotFoundExcepion;
 import com.taslim.trainingmanagementsystem.model.BatchRequestModel;
 import com.taslim.trainingmanagementsystem.repository.BatchRepository;
 import com.taslim.trainingmanagementsystem.service.BatchService;
@@ -13,7 +13,6 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class BatchServiceImpl implements BatchService {
-
     private final BatchRepository batchRepository;
 
     @Override
@@ -38,7 +37,7 @@ public class BatchServiceImpl implements BatchService {
         if (batchOptional.isPresent()) {
             return ResponseEntity.ok(batchOptional.get());
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Batch not found with ID: " + id);
+            throw new BatchNotFoundExcepion("Batch not found with ID: " + id);
         }
     }
 
@@ -53,7 +52,7 @@ public class BatchServiceImpl implements BatchService {
             BatchEntity updatedBatch = batchRepository.save(batch);
             return ResponseEntity.ok(updatedBatch);
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Batch not found with ID: " + id);
+            throw new BatchNotFoundExcepion("Batch not found with ID: " + id);
         }
     }
 
@@ -61,14 +60,12 @@ public class BatchServiceImpl implements BatchService {
     public ResponseEntity<Object> deleteBatch(Long id) {
         Optional<BatchEntity> batchOptional = batchRepository.findById(id);
         if (batchOptional.isPresent()) {
-
             BatchEntity entity = batchOptional.get();
             entity.setActive(Boolean.FALSE);
             batchRepository.save(entity);
-
             return ResponseEntity.ok("Batch with ID: " + id + " has been deleted.");
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Batch not found with ID: " + id);
+            throw new BatchNotFoundExcepion("Batch not found with ID: " + id);
         }
     }
 }

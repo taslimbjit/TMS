@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class BatchScheduleEntity extends BaseEntity {
-
     @ManyToOne
     @JoinColumn(name = "batch_id")
     private BatchEntity batch;

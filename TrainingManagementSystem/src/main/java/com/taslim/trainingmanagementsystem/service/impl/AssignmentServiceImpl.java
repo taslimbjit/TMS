@@ -1,7 +1,7 @@
 package com.taslim.trainingmanagementsystem.service.impl;
 
 import com.taslim.trainingmanagementsystem.entity.*;
-import com.taslim.trainingmanagementsystem.exception.BookNameAuthorNameAlreadyExistsExcepion;
+import com.taslim.trainingmanagementsystem.exception.*;
 import com.taslim.trainingmanagementsystem.model.AssignmentRequestModel;
 import com.taslim.trainingmanagementsystem.repository.*;
 import com.taslim.trainingmanagementsystem.service.AssignmentService;
@@ -13,7 +13,6 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class AssignmentServiceImpl implements AssignmentService {
-
     private final AssignmentRepository assignmentRepository;
     private final BatchRepository batchRepository;
     private final TrainerRepository trainerRepository;
@@ -25,9 +24,8 @@ public class AssignmentServiceImpl implements AssignmentService {
         Optional<TrainerEntity> trainerOptional = trainerRepository.findById(assignmentRequestModel.getTrainerId());
         Optional<CourseEntity> courseOptional = courseRepository.findById(assignmentRequestModel.getCourseId());
         if (batchOptional.isEmpty() || trainerOptional.isEmpty() || courseOptional.isEmpty()) {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Invalid batch, trainer, or course ID.");
+            throw new InvalidBatchTrainerCourseException("Invalid batch, trainer, or course ID.");
         }
-
         BatchEntity batch = batchOptional.get();
         TrainerEntity trainer = trainerOptional.get();
         CourseEntity course = courseOptional.get();
@@ -56,7 +54,7 @@ public class AssignmentServiceImpl implements AssignmentService {
         if (assignmentOptional.isPresent()) {
             return ResponseEntity.ok(assignmentOptional.get());
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Assignment not found with ID: " + id);
+            throw new AssignmentNotFoundExcepion("Assignment not found with ID: " + id);
         }
     }
 
@@ -69,7 +67,7 @@ public class AssignmentServiceImpl implements AssignmentService {
             Optional<CourseEntity> courseOptional = courseRepository.findById(assignmentRequestModel.getCourseId());
 
             if (batchOptional.isEmpty() || trainerOptional.isEmpty() || courseOptional.isEmpty()) {
-                throw new BookNameAuthorNameAlreadyExistsExcepion("Invalid batch, trainer, or course ID.");
+                throw new InvalidBatchTrainerCourseException("Invalid batch, trainer, or course ID.");
             }
             AssignmentEntity assignment = assignmentOptional.get();
             assignment.setBatch(batchOptional.get());
@@ -83,7 +81,7 @@ public class AssignmentServiceImpl implements AssignmentService {
             AssignmentEntity updatedAssignment = assignmentRepository.save(assignment);
             return ResponseEntity.ok(updatedAssignment);
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Assignment not found with ID: " + id);
+            throw new AssignmentNotFoundExcepion("Assignment not found with ID: " + id);
         }
     }
 
@@ -96,7 +94,7 @@ public class AssignmentServiceImpl implements AssignmentService {
             assignmentRepository.save(entity);
             return ResponseEntity.ok("Assignment with ID: " + id + " has been deleted.");
         } else {
-            throw new BookNameAuthorNameAlreadyExistsExcepion("Assignment not found with ID: " + id);
+            throw new AssignmentNotFoundExcepion("Assignment not found with ID: " + id);
         }
     }
 }

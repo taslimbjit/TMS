@@ -12,7 +12,6 @@ import java.util.List;
 @RequestMapping("/assignment-submissions")
 @RequiredArgsConstructor
 public class AssignmentSubmissionController {
-
     private final AssignmentSubmissionService assignmentSubmissionService;
 
     @PostMapping("/create")

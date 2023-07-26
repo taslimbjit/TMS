@@ -10,7 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class AssignTrainerEntity extends BaseEntity {
-
     @ManyToOne
     @JoinColumn(name = "batch_id")
     private BatchEntity batch;
