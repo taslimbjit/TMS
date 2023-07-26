@@ -9,10 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CourseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CourseEntity extends BaseEntity {
+
     private String courseName;
     @ManyToOne
     @JoinColumn(name = "trainer_id")

@@ -24,10 +24,10 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/admin/register","admin/login")
+                .requestMatchers("/admins/create","/user/login","/user/register")
                 .permitAll()
-                .requestMatchers("/trainer/register","/Trainee/register"
-                        ,"/trainees/create","/admins/create","/trainers/create","/batches/create","/courses/create"
+                .requestMatchers(
+                        "/trainees/create","/trainers/create","/batches/create","/courses/create"
                         ,"/batch-schedules/create","/assign-trainer/assign","/assign-trainees/create","/trainees/all"
                         ,"/trainers/all","/batches/all","/courses/all","/batch-schedules/all","/trainees/id/**","/trainers/id/**"
                         ,"/batches/id/**","/courses/id/**","/batch-schedules/id/**","/trainees/update/**","/trainers/update/**"
@@ -35,12 +35,12 @@ public class SecurityConfig {
                         ,"/trainees/delete/**","/trainers/delete/**","/batches/delete/**","/courses/delete/**")
                 .hasAnyAuthority("ADMIN")
 
-                .requestMatchers("/trainer/login","/assignments/create","/assignments/all","/batch-schedules/all"
+                .requestMatchers("/assignments/create","/assignments/all","/batch-schedules/all"
                         ,"/assignment-submissions/all","/batches/id/**","/courses/id/**","/assignments/id/**","/batch-schedules/id/**"
                         ,"/assignment-submissions/id/**")
                 .hasAnyAuthority("TRAINER")
 
-                .requestMatchers("/trainee/login","/assignment-submissions/create","/batch-schedules/all"
+                .requestMatchers("/assignment-submissions/create","/batch-schedules/all"
                         ,"/courses/id/**","/batch-schedules/id/**","/assignment-submissions/id/**")
                 .hasAnyAuthority("TRAINEE")
                 .anyRequest()

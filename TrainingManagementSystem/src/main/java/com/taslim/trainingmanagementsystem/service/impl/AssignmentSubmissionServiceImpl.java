@@ -74,7 +74,9 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
     public ResponseEntity<Object> deleteAssignmentSubmission(Long id) {
         Optional<AssignmentSubmissionEntity> submissionOptional = assignmentSubmissionRepository.findById(id);
         if (submissionOptional.isPresent()) {
-            assignmentSubmissionRepository.deleteById(id);
+            AssignmentSubmissionEntity entity = submissionOptional.get();
+            entity.setActive(Boolean.FALSE);
+            assignmentSubmissionRepository.save(entity);
             return ResponseEntity.ok("Assignment submission with ID: " + id + " has been deleted.");
         } else {
             throw new BookNameAuthorNameAlreadyExistsExcepion("Assignment submission not found with ID: " + id);

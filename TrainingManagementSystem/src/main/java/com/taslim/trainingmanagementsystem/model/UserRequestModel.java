@@ -10,7 +10,6 @@ public class UserRequestModel {
     private String address;
     private String password;
     private String email;
-    private String firstName;
-    private String lastName;
+    private String name;
     private String role;
 }

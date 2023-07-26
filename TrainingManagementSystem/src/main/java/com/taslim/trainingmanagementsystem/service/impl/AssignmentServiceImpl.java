@@ -91,7 +91,9 @@ public class AssignmentServiceImpl implements AssignmentService {
     public ResponseEntity<Object> deleteAssignment(Long id) {
         Optional<AssignmentEntity> assignmentOptional = assignmentRepository.findById(id);
         if (assignmentOptional.isPresent()) {
-            assignmentRepository.deleteById(id);
+            AssignmentEntity entity = assignmentOptional.get();
+            entity.setActive(Boolean.FALSE);
+            assignmentRepository.save(entity);
             return ResponseEntity.ok("Assignment with ID: " + id + " has been deleted.");
         } else {
             throw new BookNameAuthorNameAlreadyExistsExcepion("Assignment not found with ID: " + id);

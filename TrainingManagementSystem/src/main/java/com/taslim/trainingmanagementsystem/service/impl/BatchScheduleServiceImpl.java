@@ -80,7 +80,9 @@ public class BatchScheduleServiceImpl implements BatchScheduleService {
     public ResponseEntity<Object> deleteBatchSchedule(Long id) {
         Optional<BatchScheduleEntity> batchScheduleOptional = batchScheduleRepository.findById(id);
         if (batchScheduleOptional.isPresent()) {
-            batchScheduleRepository.deleteById(id);
+            BatchScheduleEntity entity = batchScheduleOptional.get();
+            entity.setActive(Boolean.FALSE);
+            batchScheduleRepository.save(entity);
             return ResponseEntity.ok("Batch Schedule with ID: " + id + " has been deleted.");
         } else {
             throw new BookNameAuthorNameAlreadyExistsExcepion("Batch Schedule not found with ID: " + id);

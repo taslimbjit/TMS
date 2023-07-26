@@ -1,5 +1,6 @@
 package com.taslim.trainingmanagementsystem.entity;
 
+import com.taslim.trainingmanagementsystem.utils.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,11 +19,11 @@ public class UserEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String name;
     private String email;
     private String password;
     private String address;
+    private boolean isActive=true;
 
     @Enumerated(EnumType.STRING)
     private Role role;

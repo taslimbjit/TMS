@@ -9,12 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AdminEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class AdminEntity extends BaseEntity {
     private String fullName;
     private String profilePicture;
     private String email;
-    private String password;
 }

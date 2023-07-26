@@ -9,10 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AssignTraineeEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class AssignTraineeEntity extends BaseEntity{
 
     @OneToOne
     @JoinColumn(name = "batch_id")

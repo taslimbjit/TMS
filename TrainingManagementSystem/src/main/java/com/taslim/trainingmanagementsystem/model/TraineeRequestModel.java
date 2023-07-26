@@ -18,4 +18,5 @@ public class TraineeRequestModel {
     private float cgpa;
     private int passingYear;
     private String presentAddress;
+    private String password;
 }

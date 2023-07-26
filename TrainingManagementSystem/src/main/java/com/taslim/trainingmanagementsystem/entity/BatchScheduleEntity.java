@@ -11,10 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BatchScheduleEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class BatchScheduleEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "batch_id")

@@ -61,7 +61,11 @@ public class BatchServiceImpl implements BatchService {
     public ResponseEntity<Object> deleteBatch(Long id) {
         Optional<BatchEntity> batchOptional = batchRepository.findById(id);
         if (batchOptional.isPresent()) {
-            batchRepository.deleteById(id);
+
+            BatchEntity entity = batchOptional.get();
+            entity.setActive(Boolean.FALSE);
+            batchRepository.save(entity);
+
             return ResponseEntity.ok("Batch with ID: " + id + " has been deleted.");
         } else {
             throw new BookNameAuthorNameAlreadyExistsExcepion("Batch not found with ID: " + id);

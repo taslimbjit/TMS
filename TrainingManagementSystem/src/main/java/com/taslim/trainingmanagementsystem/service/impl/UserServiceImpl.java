@@ -6,12 +6,12 @@ import com.taslim.trainingmanagementsystem.model.*;
 import com.taslim.trainingmanagementsystem.repository.UserRepository;
 import com.taslim.trainingmanagementsystem.service.UserService;
 import com.taslim.trainingmanagementsystem.utils.JwtService;
+import com.taslim.trainingmanagementsystem.utils.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.security.authentication.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -32,10 +32,9 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = UserEntity.builder()
                 .email(requestModel.getEmail())
                 .address(requestModel.getAddress())
-                .firstName(requestModel.getFirstName())
-                .lastName(requestModel.getLastName())
+                .name(requestModel.getName())
                 .password(passwordEncoder.encode(requestModel.getPassword()))
-                .role(Objects.equals(requestModel.getRole(), "ADMIN") ? Role.ADMIN : Role.CUSTOMER)
+                .role(getRole(requestModel))
                 .build();
         userRepository.save(userEntity);
         AuthenticationResponse authRes = AuthenticationResponse.builder()
@@ -43,6 +42,19 @@ public class UserServiceImpl implements UserService {
                 .build();
         return new ResponseEntity<>(authRes, HttpStatus.CREATED);
     }
+
+    private Role getRole(UserRequestModel model) {
+        Role role;
+        switch (model.getRole()) {
+            case "TRAINER" -> role = Role.TRAINER;
+            case "TRAINEE" -> role = Role.TRAINEE;
+            case "ADMIN" -> role = Role.ADMIN;
+            default -> throw new IllegalArgumentException("Invalid role!");
+        }
+
+        return role;
+    }
+
 
     public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
         try {

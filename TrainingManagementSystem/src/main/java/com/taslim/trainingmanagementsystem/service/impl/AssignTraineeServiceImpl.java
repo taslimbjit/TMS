@@ -73,7 +73,9 @@ public class AssignTraineeServiceImpl implements AssignTraineeService {
     public ResponseEntity<Object> deleteAssignTrainee(Long id) {
         Optional<AssignTraineeEntity> assignTraineeOptional = assignTraineeRepository.findById(id);
         if (assignTraineeOptional.isPresent()) {
-            assignTraineeRepository.deleteById(id);
+            AssignTraineeEntity entity = assignTraineeOptional.get();
+            entity.setActive(Boolean.FALSE);
+            assignTraineeRepository.save(entity);
             return ResponseEntity.ok("Assign Trainee with ID: " + id + " has been deleted.");
         } else {
             throw new BookNameAuthorNameAlreadyExistsExcepion("Assign Trainee not found with ID: " + id);

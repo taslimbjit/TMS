@@ -9,10 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TraineeEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long traineeId;
+public class TraineeEntity extends BaseEntity{
+
     private String fullName;
     private String profilePicture;
     private String gender;

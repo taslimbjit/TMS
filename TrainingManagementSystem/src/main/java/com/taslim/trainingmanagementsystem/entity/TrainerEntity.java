@@ -5,15 +5,13 @@ import lombok.*;
 
 @Entity
 @Table(name = "trainers")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Builder
-public class TrainerEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long trainerId;
+public class TrainerEntity extends BaseEntity{
     private String fullName;
+    private String email;
     private String profilePicture;
     private String designation;
     private String joiningDate;

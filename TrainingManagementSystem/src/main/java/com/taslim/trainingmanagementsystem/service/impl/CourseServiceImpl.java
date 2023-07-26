@@ -64,7 +64,9 @@ public class CourseServiceImpl implements CourseService {
     public ResponseEntity<Object> deleteCourse(Long id) {
         Optional<CourseEntity> courseOptional = courseRepository.findById(id);
         if (courseOptional.isPresent()) {
-            courseRepository.deleteById(id);
+            CourseEntity entity = courseOptional.get();
+            entity.setActive(Boolean.FALSE);
+            courseRepository.save(entity);
             return ResponseEntity.ok("Course with ID: " + id + " has been deleted.");
         } else {
             throw new BookNameAuthorNameAlreadyExistsExcepion("Course not found with ID: " + id);

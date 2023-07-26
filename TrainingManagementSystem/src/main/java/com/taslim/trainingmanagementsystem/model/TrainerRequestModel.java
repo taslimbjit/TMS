@@ -8,6 +8,8 @@ import lombok.*;
 @Builder
 public class TrainerRequestModel {
     private String fullName;
+    private String email;
+    private String password;
     private String profilePicture;
     private String designation;
     private String joiningDate;

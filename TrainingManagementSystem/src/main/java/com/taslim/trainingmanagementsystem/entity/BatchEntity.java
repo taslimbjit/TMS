@@ -9,10 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BatchEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class BatchEntity extends BaseEntity{
+
     private String batchName;
     private String startingDate;
     private String endingDate;

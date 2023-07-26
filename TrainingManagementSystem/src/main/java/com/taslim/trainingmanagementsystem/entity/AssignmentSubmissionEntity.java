@@ -9,11 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AssignmentSubmissionEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class AssignmentSubmissionEntity extends BaseEntity{
     @OneToOne
     @JoinColumn(name = "assignment_id")
     private AssignmentEntity assignment;
