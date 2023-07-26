@@ -19,4 +19,7 @@ public class TrainerEntity extends BaseEntity{
     private String expertises;
     private String contactNumber;
     private String presentAddress;
+
+    public void setName(String john_doe) {
+    }
 }

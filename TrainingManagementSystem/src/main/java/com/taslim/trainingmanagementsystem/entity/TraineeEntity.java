@@ -22,4 +22,7 @@ public class TraineeEntity extends BaseEntity{
     private float cgpa;
     private int passingYear;
     private String presentAddress;
+
+    public void setName(String john_doe) {
+    }
 }

@@ -22,8 +22,8 @@ public class AssignmentEntity extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "course_id")
-
     private CourseEntity course;
+
     private String title;
     private LocalDateTime deadline;
     private String submissionStatus;

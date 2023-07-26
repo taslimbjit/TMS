@@ -1,10 +1,13 @@
 package com.taslim.trainingmanagementsystem.controllers;
 
+import com.taslim.trainingmanagementsystem.entity.AssignTrainerEntity;
 import com.taslim.trainingmanagementsystem.model.AssignTrainerRequestModel;
 import com.taslim.trainingmanagementsystem.service.AssignTrainerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/assign-trainer")
@@ -13,24 +16,29 @@ public class AssignTrainerController {
 
     private final AssignTrainerService assignTrainerService;
 
-    @PostMapping("/assign")
-    public ResponseEntity<Object> assignTrainerToBatch(@RequestBody AssignTrainerRequestModel requestModel) {
-        return assignTrainerService.assignTrainerToBatch(requestModel);
+    @PostMapping("/create")
+    public ResponseEntity<Object> assignTrainer(@RequestBody AssignTrainerRequestModel requestModel) {
+        return assignTrainerService.assignTrainer(requestModel);
     }
 
-    @GetMapping("/batch/{batchId}")
-    public ResponseEntity<Object> getTrainersByBatchId(@PathVariable Long batchId) {
-        return assignTrainerService.getTrainersByBatchId(batchId);
+    @GetMapping("/all")
+    public List<AssignTrainerEntity> getAllAssignTrainers() {
+        return assignTrainerService.getAllAssignTrainers();
     }
 
-    @GetMapping("/trainer/{trainerId}")
-    public ResponseEntity<Object> getBatchesByTrainerId(@PathVariable Long trainerId) {
-        return assignTrainerService.getBatchesByTrainerId(trainerId);
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Object> getAssignTraineeById(@PathVariable Long id) {
+        return assignTrainerService.getAssignTrainerById(id);
     }
 
-    @DeleteMapping("/unassign/{batchId}/{trainerId}")
-    public ResponseEntity<Object> unassignTrainerFromBatch(@PathVariable Long batchId, @PathVariable Long trainerId) {
-        return assignTrainerService.unassignTrainerFromBatch(batchId, trainerId);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Object> updateAssignTrainer(@PathVariable Long id, @RequestBody AssignTrainerRequestModel requestModel) {
+        return assignTrainerService.updateAssignTrainer(id, requestModel);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Object> deleteAssignTrainer(@PathVariable Long id) {
+        return assignTrainerService.deleteAssignTrainer(id);
     }
 }
 
